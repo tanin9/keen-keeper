@@ -1,2 +1,13 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+* {
+  font-family: "Geist", sans-serif;
+ 
+}
+.forest-green
+{color: #244d3f;}
+.bg-forest-green
+{
+    background: #244d3f;
+}
