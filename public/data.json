@@ -1,0 +1,124 @@
+[
+  {
+    "id": 1,
+    "name": "Mili Rossi",
+    "picture": "https://i.ibb.co.com/ZRdWW2DP/pic13.jpg",
+    "email": "tariq.hassan@example.com",
+    "days_since_contact": 15,
+    "status": "overdue",
+    "tags": ["college", "basketball"],
+    "bio": "Played on the same basketball team in uni.",
+    "goal": 14,
+    "next_due_date": "2025-07-08"
+  },
+  {
+    "id": 2,
+    "name": "Yuna Park",
+    "picture": "https://i.ibb.co.com/nNWB8FGQ/pic14.jpg",
+    "email": "yuna.park@example.com",
+    "days_since_contact": 0,
+    "status": "on track",
+    "tags": ["family", "sister"],
+    "bio": "My younger sister. Talk daily.",
+    "goal": 3,
+    "next_due_date": "2025-07-16"
+  },
+  {
+    "id": 3,
+    "name": "Carlos Mendes",
+    "picture": "https://i.ibb.co.com/SXxZ49DH/pic15.jpg",
+    "email": "carlos.mendes@example.com",
+    "days_since_contact": 120,
+    "status": "almost due",
+    "tags": ["networking", "old colleague"],
+    "bio": "Worked together at an agency years ago. Lost touch.",
+    "goal": 60,
+    "next_due_date": "2025-05-10"
+  },
+  {
+    "id": 4,
+    "name": "Priya Nair",
+    "picture": "https://i.ibb.co.com/tfsDdVT/pic4.jpg",
+    "email": "priya.nair@example.com",
+    "days_since_contact": 1,
+    "status": "on track",
+    "tags": ["college", "roommate"],
+    "bio": "Roommate for 3 years. We still talk every week.",
+    "goal": 7,
+    "next_due_date": "2025-07-14"
+  },
+  {
+    "id": 5,
+    "name": "Daniel Osei",
+    "picture": "https://i.ibb.co.com/TMNhKSQm/pic5.jpg",
+    "email": "daniel.osei@example.com",
+    "days_since_contact": 60,
+    "status": "almost due",
+    "tags": ["networking", "industry"],
+    "bio": "Met at a tech conference in 2022. Great product mind.",
+    "goal": 30,
+    "next_due_date": "2025-06-25"
+  },
+  
+ 
+  {
+    "id": 6,
+    "name": "Amara Diallo",
+    "picture": "https://i.ibb.co.com/GfK4YQz8/pic8.jpg",
+    "email": "amara.d@example.com",
+    "days_since_contact": 10,
+    "status": "almost due",
+    "tags": ["college", "study group"],
+    "bio": "Study partner during finals. Always kept me grounded.",
+    "goal": 14,
+    "next_due_date": "2025-07-17"
+  },
+  {
+    "id": 7,
+    "name": "Noah Patel",
+    "picture": "https://i.ibb.co.com/0RNt2gB2/pic9.jpg",
+    "email": "noah.patel@example.com",
+    "days_since_contact": 20,
+    "status": "almost due",
+    "tags": ["networking", "startup"],
+    "bio": "Co-founder of a startup I almost joined. Sharp thinker.",
+    "goal": 14,
+    "next_due_date": "2025-07-03"
+  },
+  {
+    "id": 8,
+    "name": "James Okeke",
+    "picture": "https://i.ibb.co.com/fVJHWwVD/pic10.jpg",
+    "email": "sofia.rossi@example.com",
+    "days_since_contact": 2,
+    "status": "on track",
+    "tags": ["close friend", "travel buddy"],
+    "bio": "Traveled across Europe together. Lifelong memories.",
+    "goal": 7,
+    "next_due_date": "2025-07-15"
+  },
+  {
+    "id": 9,
+    "name": "Sofia Rossi",
+    "picture": "https://i.ibb.co.com/XxR0jmhm/pic11.jpg",
+    "email": "james.okeke@example.com",
+    "days_since_contact": 45,
+    "status": "overdue",
+    "tags": ["mentor", "industry"],
+    "bio": "Senior engineer who gave me my first code review.",
+    "goal": 30,
+    "next_due_date": "2025-06-15"
+  },
+  {
+    "id": 10,
+    "name": "Chloe Dubois",
+    "picture": "https://i.ibb.co.com/Df9SXLZk/pic12.jpg",
+    "email": "chloe.dubois@example.com",
+    "days_since_contact": 7,
+    "status": "almost due",
+    "tags": ["work", "close friend"],
+    "bio": "Met at a hackathon. Now we grab coffee every month.",
+    "goal": 14,
+    "next_due_date": "2025-07-20"
+  }
+]

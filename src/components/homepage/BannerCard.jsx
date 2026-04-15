@@ -18,7 +18,7 @@ const BannerCard = () => {
         </div>
       </div>
 
-      <div className="mx-6 px-5 pb-4 grid grid-flow-col grid-rows-1 gap-4">
+      <div className="mx-6 px-5 pb-4 grid grid-cols-1 md:grid-cols-4  gap-4">
         <div className="flex flex-col justify-center items-center shadow-xl p-6 bg-white rounded-2xl">
           <p className="font-semibold text-xl md:text-3xl">10</p>
           <p>total Friends</p>

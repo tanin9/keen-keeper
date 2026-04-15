@@ -8,6 +8,7 @@ import MainLayout from "./layout/MainLayout.jsx";
 import Homepage from "./pages/homepage/Homepage.jsx";
 import Friends from "./pages/friends/Friends.jsx";
 import Errorpage from "./pages/errorpage/Errorpage.jsx";
+import FriendDetails from "./pages/friendDetails/FriendDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
       {
         path: "/friends",
         element: <Friends />,
+      },
+      {
+        path: "/friendDetails/:id",
+        element: <FriendDetails />,
+        loader:()=>fetch("/data.json")
       },
 
       {

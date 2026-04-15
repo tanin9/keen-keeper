@@ -1,0 +1,165 @@
+import React from "react";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { FiArchive } from "react-icons/fi";
+import { RiNotificationSnoozeLine } from "react-icons/ri";
+import { FiPhoneCall } from "react-icons/fi";
+import { MdOutlineTextsms } from "react-icons/md";
+import { FiVideo } from "react-icons/fi";
+import { useLoaderData, useParams } from "react-router";
+
+// const dataPromise = fetch("/data.json").then((res) => res.json());
+
+const FriendDetails = () => {
+  const { id } = useParams();
+  // console.log(params);
+
+  // const friends = use(dataPromise);
+  const friends = useLoaderData();
+  const expectedFriend = friends.find((friend) => friend.id == id);
+  console.log(expectedFriend, "friends");
+
+  return (
+    <div className="container mx-auto bg-[#f8fafc]">
+      <div className="p-15">
+        <div id=" section 1">
+          <div className="grid grid-cols-1 md:grid-cols-3 ">
+            <div className="card bg-base-100 w-full shadow-lg col-span-1 ">
+              <figure className="px-10 pt-10">
+                <img
+                  src={expectedFriend.picture}
+                  alt="Shoes"
+                  className="rounded-full h-[20vh] w-[20vh]"
+                />
+              </figure>
+              <div className="card-body items-center text-center">
+                <h2 className="card-title">{expectedFriend.name}</h2>
+                <p
+                  className={`badge rounded-full text-white text-lg p-3 ${
+                    expectedFriend.status === "overdue"
+                      ? "bg-red-500"
+                      : expectedFriend.status === "almost due"
+                        ? "bg-yellow-500"
+                        : expectedFriend.status === "on track"
+                          ? "bg-forest-green"
+                          : "bg-gray-400"
+                  }
+                 `}
+                >
+                  {expectedFriend.status}
+                </p>
+                <div className="flex gap-2 ">
+                  {expectedFriend.tags.map((tag, i) => (
+                    <p
+                      className="badge bg-success rounded-full text-lg p-3 "
+                      key={i}
+                    >
+                      {tag}
+                    </p>
+                  ))}
+                </div>
+                <p className="italic">"{expectedFriend.bio}"</p>
+                <p>Preferred: {expectedFriend.email}</p>
+              </div>
+            </div>
+            <div className="col-span-2 grid md:grid-rows-2">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-4 pt-0">
+                <div className="p-7 flex flex-col justify-center items-center space-y-3 rounded-2xl bg-white gray shadow-lg">
+                  <h2 className="text-2xl font-semibold forest-green">
+                    {expectedFriend.days_since_contact}
+                  </h2>
+                  <p>Days Since Contact</p>
+                </div>
+                <div className="p-7 flex flex-col justify-center items-center space-y-3 rounded-2xl bg-white gray shadow-lg">
+                  <h2 className="text-2xl font-semibold forest-green">
+                    {expectedFriend.goal}
+                  </h2>
+                  <p>Goal (Days)</p>
+                </div>
+                <div className="p-7 flex flex-col justify-center items-center space-y-3 rounded-2xl bg-white gray shadow-lg">
+                  <h2 className="text-2xl font-semibold forest-green">
+                    {new Date(expectedFriend.next_due_date).toLocaleDateString(
+                      "en-US",
+                      {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      },
+                    )}
+                  </h2>
+                  <p>Next Due</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-2xl mx-4 grid grid-rows-2 p-5 shadow-lg">
+                <div className="flex justify-between items-center ">
+                  <h2 className="text-3xl forest-green">Relationship Goal</h2>
+                  <button className="btn   border"> Edit</button>
+                </div>
+                <div>
+                  <h2 className="text-xl gray">
+                    Connect every{" "}
+                    <span className="font-bold text-black">
+                      {expectedFriend.goal} days
+                    </span>
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="section 2 "
+          className="my-4 "
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 ">
+            <div className="col-span-1 space-y-2">
+              <div className="bg-white rounded-lg p-3 flex justify-center items-center shadow-lg">
+                <h2 className="flex justify-center items-center gap-1 ">
+                  <RiNotificationSnoozeLine /> Snooze 2 weeks
+                </h2>
+              </div>
+              <div className="bg-white rounded-lg p-3 flex justify-center items-center shadow-lg">
+                <h2 className="flex justify-center items-center gap-1 ">
+                  <FiArchive />
+                  Archive
+                </h2>
+              </div>
+              <div className="bg-white rounded-lg p-3 flex justify-center items-center text-red-500 shadow-lg">
+                <h2 className="flex justify-center items-center gap-1 ">
+                  <FaRegTrashAlt /> Delete
+                </h2>
+              </div>
+            </div>
+            <div className="col-span-2 p-8 bg-white mx-4 rounded-xl grid grid-row-3 shadow-lg">
+              <h2 className="row-span-1 forest-green text-lg font-semibold mb-1">
+                Quick Check-In
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 row-span-2 gap-2">
+                <div className="bg-[#e9f1f8] rounded-lg flex justify-center items-center inset-shadow-sm inset-shadow-gray-500">
+                  <p className="flex flex-col justify-center items-center gap-2">
+                    {" "}
+                    <FiPhoneCall />
+                    Call
+                  </p>
+                </div>
+                <div className="bg-[#e9f1f8] rounded-lg flex flex-col justify-center items-center inset-shadow-sm inset-shadow-gray-500">
+                  <p className="flex flex-col justify-center items-center gap-2">
+                    <MdOutlineTextsms />
+                    Text
+                  </p>
+                </div>
+                <div className="bg-[#e9f1f8] rounded-lg flex justify-center items-center inset-shadow-sm inset-shadow-gray-500 p">
+                  <p className="flex flex-col justify-center items-center gap-2 py-2">
+                    <FiVideo />
+                    Video
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FriendDetails;
