@@ -1,12 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import './index.css'
-import App from './App.jsx'
-import MainLayout from './layout/MainLayout.jsx';
-import Homepage from './pages/homepage/Homepage.jsx';
-import Friends from './pages/friends/Friends.jsx';
+import "./index.css";
+import App from "./App.jsx";
+import MainLayout from "./layout/MainLayout.jsx";
+import Homepage from "./pages/homepage/Homepage.jsx";
+import Friends from "./pages/friends/Friends.jsx";
+import Errorpage from "./pages/errorpage/Errorpage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,15 +16,19 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Homepage/>,
+        element: <Homepage />,
       },
       {
         path: "/friends",
-        element:<Friends/>,
-      }
-    ]
+        element: <Friends />,
+      },
+
+      {
+        path: "*",
+        element: <Errorpage />
+      },
+    ],
   },
- 
 ]);
 
 createRoot(document.getElementById("root")).render(
