@@ -2,9 +2,9 @@ import React from 'react';
 
 const Friends = () => {
     return (
-        <div>
-            <h2>hello world</h2>
-        </div>
+      <div className="container mx-auto ">
+        <h2>hello world</h2>
+      </div>
     );
 };
 
