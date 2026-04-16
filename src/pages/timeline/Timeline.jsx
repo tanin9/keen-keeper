@@ -21,7 +21,7 @@ const Timeline = () => {
       if (filter === "call" || filter === "text" || filter === "video") {
         return activity.type === filter;
       }
-      
+
       if (
         filter === "sort by newest" ||
         filter === "sort by oldest" ||
@@ -68,11 +68,11 @@ const Timeline = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto bg-[#f8fafc]  py-10">
       <div className="px-10 my-5">
         <h2 className="font-bold text-4xl">Timeline</h2>
       </div>
-      <div className="container mx-auto px-10">
+      <div className="container mx-auto  px-10">
         <input
           type="text"
           className="input"

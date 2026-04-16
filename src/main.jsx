@@ -12,6 +12,7 @@ import FriendDetails from "./pages/friendDetails/FriendDetails.jsx";
 import Timeline from "./pages/timeline/Timeline.jsx";
 import FriendProvider from "./context/FriendProvider.jsx";
 import { ToastContainer } from "react-toastify";
+import Dashboard from "./pages/dashboard/Dashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/timeline",
-        element: <Timeline/>,
+        element: <Timeline />,
+      },
+      {
+        path: "/Stats",
+        element: <Dashboard/>,
       },
       {
         path: "/friendDetails/:friendId",
