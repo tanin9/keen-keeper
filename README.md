@@ -1,16 +1,149 @@
-# React + Vite
+import { FaRegTrashAlt } from "react-icons/fa";
+import { FiArchive } from "react-icons/fi";
+import { RiNotificationSnoozeLine } from "react-icons/ri";
+import { FiPhoneCall } from "react-icons/fi";
+import { MdOutlineTextsms } from "react-icons/md";
+import { FiVideo } from "react-icons/fi";
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<div className="container mx-auto bg-[#f8fafc]">
+      <div className="p-15">
+        <div id=" section 1">
+          <div className="grid grid-cols-1 md:grid-cols-3 ">
+            <div className="card bg-base-100 w-full shadow-lg col-span-1 ">
+              <figure className="px-10 pt-10">
+                <img
+                  src={picture}
+                  alt="Shoes"
+                  className="rounded-full h-[20vh] w-[20vh]"
+                />
+              </figure>
+              <div className="card-body items-center text-center">
+                <h2 className="card-title">{name}</h2>
+                <p
+                  className={`badge rounded-full text-white text-lg p-3 ${
+                    status === "overdue"
+                      ? "bg-red-500"
+                      :status === "almost due"
+                        ? "bg-yellow-500"
+                        : status === "on track"
+                          ? "bg-forest-green"
+                          : "bg-gray-400"
+                  }
+                 `}
+                >
+                  {status}
+                </p>
+                <div className="flex gap-2 ">
+                  {tags.map((tag, i) => (
+                    <p
+                      className="badge bg-success rounded-full text-lg p-3 "
+                      key={i}
+                    >
+                      {tag}
+                    </p>
+                  ))}
+                </div>
+                <p className="italic">"{bio}"</p>
+                <p>Preferred: {email}</p>
+              </div>
+            </div>
+            <div className="col-span-2 grid md:grid-rows-2">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-4 pt-0">
+                <div className="p-7 flex flex-col justify-center items-center space-y-3 rounded-2xl bg-white gray shadow-lg">
+                  <h2 className="text-2xl font-semibold forest-green">
+                    {days_since_contact}
+                  </h2>
+                  <p>Days Since Contact</p>
+                </div>
+                <div className="p-7 flex flex-col justify-center items-center space-y-3 rounded-2xl bg-white gray shadow-lg">
+                  <h2 className="text-2xl font-semibold forest-green">
+                    {goal}
+                  </h2>
+                  <p>Goal (Days)</p>
+                </div>
+                <div className="p-7 flex flex-col justify-center items-center space-y-3 rounded-2xl bg-white gray shadow-lg">
+                  <h2 className="text-2xl font-semibold forest-green">
+                    {new Date(next_due_date).toLocaleDateString(
+                      "en-US",
+                      {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      },
+                    )}
+                  </h2>
+                  <p>Next Due</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-2xl mx-4 grid grid-rows-2 p-5 shadow-lg">
+                <div className="flex justify-between items-center ">
+                  <h2 className="text-3xl forest-green">Relationship Goal</h2>
+                  <button className="btn   border"> Edit</button>
+                </div>
+                <div>
+                  <h2 className="text-xl gray">
+                    Connect every{" "}
+                    <span className="font-bold text-black">
+                      {expectedFriend.goal} days
+                    </span>
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="section 2 "
+          className="my-4 "
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 ">
+            <div className="col-span-1 space-y-2">
+              <div className="bg-white rounded-lg p-3 flex justify-center items-center shadow-lg">
+                <h2 className="flex justify-center items-center gap-1 ">
+                  <RiNotificationSnoozeLine /> Snooze 2 weeks
+                </h2>
+              </div>
+              <div className="bg-white rounded-lg p-3 flex justify-center items-center shadow-lg">
+                <h2 className="flex justify-center items-center gap-1 ">
+                  <FiArchive />
+                  Archive
+                </h2>
+              </div>
+              <div className="bg-white rounded-lg p-3 flex justify-center items-center text-red-500 shadow-lg">
+                <h2 className="flex justify-center items-center gap-1 ">
+                  <FaRegTrashAlt /> Delete
+                </h2>
+              </div>
+            </div>
+            <div className="col-span-2 p-8 bg-white mx-4 rounded-xl grid grid-row-3 shadow-lg">
+              <h2 className="row-span-1 forest-green text-lg font-semibold mb-1">
+                Quick Check-In
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 row-span-2 gap-2">
+                <div onClick={()=>handleCall(expectedFriend)}  className="bg-[#e9f1f8] rounded-lg flex justify-center items-center inset-shadow-sm inset-shadow-gray-500">
+                  <p className="flex flex-col justify-center items-center gap-2">
+                    {" "}
+                    <FiPhoneCall />
+                    Call
+                  </p>
+                </div>
+                <div className="bg-[#e9f1f8] rounded-lg flex flex-col justify-center items-center inset-shadow-sm inset-shadow-gray-500">
+                  <p className="flex flex-col justify-center items-center gap-2">
+                    <MdOutlineTextsms />
+                    Text
+                  </p>
+                </div>
+                <div className="bg-[#e9f1f8] rounded-lg flex justify-center items-center inset-shadow-sm inset-shadow-gray-500 p">
+                  <p className="flex flex-col justify-center items-center gap-2 py-2">
+                    <FiVideo />
+                    Video
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -1,22 +1,47 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { FiArchive } from "react-icons/fi";
+import { FiArchive, FiPhoneCall, FiVideo } from "react-icons/fi";
 import { RiNotificationSnoozeLine } from "react-icons/ri";
-import { FiPhoneCall } from "react-icons/fi";
 import { MdOutlineTextsms } from "react-icons/md";
-import { FiVideo } from "react-icons/fi";
 import { useLoaderData, useParams } from "react-router";
+import { FriendContext } from "../../context/FriendProvider";
 
 // const dataPromise = fetch("/data.json").then((res) => res.json());
 
 const FriendDetails = () => {
-  const { id } = useParams();
-  // console.log(params);
+  const { friendId } = useParams();
+  // console.log(friendId, "friendId");
 
-  // const friends = use(dataPromise);
-  const friends = useLoaderData();
-  const expectedFriend = friends.find((friend) => friend.id == id);
-  console.log(expectedFriend, "friends");
+  // const friendData = use(dataPromise);
+  // console.log(friendData);
+  const friendsData = useLoaderData();
+  // console.log(friendsData);
+
+  const expectedFriend = friendsData.find(
+    (friendData) => friendData.id == friendId,
+  );
+  // console.log(expectedFriend);
+
+  const {
+    id,
+    name,
+    picture,
+    email,
+    days_since_contact,
+    status,
+    tags,
+    bio,
+    goal,
+    next_due_date,
+  } = expectedFriend;
+
+  const { handleCall, storedFriend } = useContext(FriendContext);
+  const { handleText, storedFriendText } = useContext(FriendContext);
+  // console.log(handleCall, storedFriend , "friendContext");
+  const { handleVideo, storedFriendVideo } = useContext(FriendContext);
+
+  // console.log(id);
+
 
   return (
     <div className="container mx-auto bg-[#f8fafc]">
@@ -26,29 +51,29 @@ const FriendDetails = () => {
             <div className="card bg-base-100 w-full shadow-lg col-span-1 ">
               <figure className="px-10 pt-10">
                 <img
-                  src={expectedFriend.picture}
+                  src={picture}
                   alt="Shoes"
                   className="rounded-full h-[20vh] w-[20vh]"
                 />
               </figure>
               <div className="card-body items-center text-center">
-                <h2 className="card-title">{expectedFriend.name}</h2>
+                <h2 className="card-title">{name}</h2>
                 <p
                   className={`badge rounded-full text-white text-lg p-3 ${
-                    expectedFriend.status === "overdue"
+                    status === "overdue"
                       ? "bg-red-500"
-                      : expectedFriend.status === "almost due"
+                      : status === "almost due"
                         ? "bg-yellow-500"
-                        : expectedFriend.status === "on track"
+                        : status === "on track"
                           ? "bg-forest-green"
                           : "bg-gray-400"
                   }
                  `}
                 >
-                  {expectedFriend.status}
+                  {status}
                 </p>
                 <div className="flex gap-2 ">
-                  {expectedFriend.tags.map((tag, i) => (
+                  {tags.map((tag, i) => (
                     <p
                       className="badge bg-success rounded-full text-lg p-3 "
                       key={i}
@@ -57,34 +82,31 @@ const FriendDetails = () => {
                     </p>
                   ))}
                 </div>
-                <p className="italic">"{expectedFriend.bio}"</p>
-                <p>Preferred: {expectedFriend.email}</p>
+                <p className="italic">"{bio}"</p>
+                <p>Preferred: {email}</p>
               </div>
             </div>
             <div className="col-span-2 grid md:grid-rows-2">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-4 pt-0">
                 <div className="p-7 flex flex-col justify-center items-center space-y-3 rounded-2xl bg-white gray shadow-lg">
                   <h2 className="text-2xl font-semibold forest-green">
-                    {expectedFriend.days_since_contact}
+                    {days_since_contact}
                   </h2>
                   <p>Days Since Contact</p>
                 </div>
                 <div className="p-7 flex flex-col justify-center items-center space-y-3 rounded-2xl bg-white gray shadow-lg">
                   <h2 className="text-2xl font-semibold forest-green">
-                    {expectedFriend.goal}
+                    {goal}
                   </h2>
                   <p>Goal (Days)</p>
                 </div>
                 <div className="p-7 flex flex-col justify-center items-center space-y-3 rounded-2xl bg-white gray shadow-lg">
                   <h2 className="text-2xl font-semibold forest-green">
-                    {new Date(expectedFriend.next_due_date).toLocaleDateString(
-                      "en-US",
-                      {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      },
-                    )}
+                    {new Date(next_due_date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
                   </h2>
                   <p>Next Due</p>
                 </div>
@@ -134,20 +156,29 @@ const FriendDetails = () => {
                 Quick Check-In
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 row-span-2 gap-2">
-                <div className="bg-[#e9f1f8] rounded-lg flex justify-center items-center inset-shadow-sm inset-shadow-gray-500">
+                <div
+                  onClick={() => handleCall(expectedFriend)}
+                  className="bg-[#e9f1f8] rounded-lg flex justify-center items-center inset-shadow-sm inset-shadow-gray-500"
+                >
                   <p className="flex flex-col justify-center items-center gap-2">
                     {" "}
                     <FiPhoneCall />
                     Call
                   </p>
                 </div>
-                <div className="bg-[#e9f1f8] rounded-lg flex flex-col justify-center items-center inset-shadow-sm inset-shadow-gray-500">
+                <div
+                  onClick={() => handleText(expectedFriend)}
+                  className="bg-[#e9f1f8] rounded-lg flex flex-col justify-center items-center inset-shadow-sm inset-shadow-gray-500"
+                >
                   <p className="flex flex-col justify-center items-center gap-2">
                     <MdOutlineTextsms />
                     Text
                   </p>
                 </div>
-                <div className="bg-[#e9f1f8] rounded-lg flex justify-center items-center inset-shadow-sm inset-shadow-gray-500 p">
+                <div
+                  onClick={() => handleVideo(expectedFriend)}
+                  className="bg-[#e9f1f8] rounded-lg flex justify-center items-center inset-shadow-sm inset-shadow-gray-500 p"
+                >
                   <p className="flex flex-col justify-center items-center gap-2 py-2">
                     <FiVideo />
                     Video

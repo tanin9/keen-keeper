@@ -6,9 +6,12 @@ import "./index.css";
 import App from "./App.jsx";
 import MainLayout from "./layout/MainLayout.jsx";
 import Homepage from "./pages/homepage/Homepage.jsx";
-import Friends from "./pages/friends/Friends.jsx";
+ 
 import Errorpage from "./pages/errorpage/Errorpage.jsx";
 import FriendDetails from "./pages/friendDetails/FriendDetails.jsx";
+import Timeline from "./pages/timeline/Timeline.jsx";
+import FriendProvider from "./context/FriendProvider.jsx";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   {
@@ -20,18 +23,18 @@ const router = createBrowserRouter([
         element: <Homepage />,
       },
       {
-        path: "/friends",
-        element: <Friends />,
+        path: "/timeline",
+        element: <Timeline/>,
       },
       {
-        path: "/friendDetails/:id",
+        path: "/friendDetails/:friendId",
         element: <FriendDetails />,
-        loader:()=>fetch("/data.json")
+        loader: () => fetch("/data.json"),
       },
 
       {
         path: "*",
-        element: <Errorpage />
+        element: <Errorpage />,
       },
     ],
   },
@@ -39,7 +42,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
-    <App />
+    <FriendProvider>
+      <RouterProvider router={router} />
+      <ToastContainer/>
+    </FriendProvider>
   </StrictMode>,
 );

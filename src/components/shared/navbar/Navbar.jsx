@@ -21,7 +21,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to={"/friends"}
+          to={"/timeline"}
           className={({ isActive }) =>
             ` font-semibold mr-3 ${isActive ? "text-white bg-forest-green" : "gray"}`
           }
