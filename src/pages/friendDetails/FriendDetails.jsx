@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiArchive, FiPhoneCall, FiVideo } from "react-icons/fi";
 import { RiNotificationSnoozeLine } from "react-icons/ri";
@@ -35,10 +35,10 @@ const FriendDetails = () => {
     next_due_date,
   } = expectedFriend;
 
-  const { handleCall, storedFriend } = useContext(FriendContext);
-  const { handleText, storedFriendText } = useContext(FriendContext);
+  const { handleCall } = useContext(FriendContext);
+  const { handleText } = useContext(FriendContext);
   // console.log(handleCall, storedFriend , "friendContext");
-  const { handleVideo, storedFriendVideo } = useContext(FriendContext);
+  const { handleVideo } = useContext(FriendContext);
 
   // console.log(id);
 
