@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FriendContext } from "../../context/FriendProvider";
 import call from "../../assets/images/call.png";
 import text from "../../assets/images/text.png";
@@ -8,12 +8,40 @@ const Timeline = () => {
   const { storedFriend, storedFriendText, storedFriendVideo } =
     useContext(FriendContext);
 
-  
   const allactivities = [
     ...storedFriend.map((friend) => ({ ...friend, type: "call" })),
     ...storedFriendText.map((friend) => ({ ...friend, type: "text" })),
     ...storedFriendVideo.map((friend) => ({ ...friend, type: "video" })),
   ];
+
+  const [filter, setFilter] = useState("");
+
+  const filteredActivities = allactivities
+    .filter((activity) => {
+      if (filter === "call" || filter === "text" || filter === "video") {
+        return activity.type === filter;
+      }
+      
+      if (
+        filter === "sort by newest" ||
+        filter === "sort by oldest" ||
+        filter === "with" ||
+        filter === ""
+      ) {
+        return true;
+      }
+
+      return activity.name.toLowerCase().includes(filter);;
+    })
+    .sort((a, b) => {
+      if (filter === "sort by newest") {
+        return new Date(b.timestamp) - new Date(a.timestamp);
+      }
+      if (filter === "sort by oldest") {
+        return new Date(a.timestamp) - new Date(b.timestamp);
+      }
+      return 0;
+    });
 
   const icon = (type) => {
     if (type === "call")
@@ -21,28 +49,58 @@ const Timeline = () => {
         <img
           src={call}
           alt="call"
-          className="w-6 h-6"
         />
       );
-    if (type === "text") return <img src={text} alt="text" /> ;
-    if (type === "video") return <img src={video} alt="video" />;
+    if (type === "text")
+      return (
+        <img
+          src={text}
+          alt="text"
+        />
+      );
+    if (type === "video")
+      return (
+        <img
+          src={video}
+          alt="video"
+        />
+      );
   };
-
-  
 
   return (
     <div className="container mx-auto">
-      <div className="my-5">
+      <div className="px-10 my-5">
         <h2 className="font-bold text-4xl">Timeline</h2>
+      </div>
+      <div className="container mx-auto px-10">
+        <input
+          type="text"
+          className="input"
+          placeholder="Filter timeline"
+          list="timeline"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value.toLowerCase())}
+        />
+        <datalist id="timeline">
+          <option value="text"></option>
+          <option value="call"></option>
+          <option value="video"></option>
+          <option value="sort by newest"></option>
+          <option value="sort by oldest"></option>
+        </datalist>
       </div>
 
       {allactivities.length === 0 ? (
         <div className="container mx-auto flex justify-center items-center my-19 text-4xl">
-          <p className="text-gray-400">No activities yet.....</p>
+          <p className="forest-green">No activities yet.....</p>
+        </div>
+      ) : filteredActivities.length === 0 ? (
+        <div className="container mx-auto flex justify-center items-center my-19 text-4xl">
+          <p className="text-gray-400">No data available for "{filter}"</p>
         </div>
       ) : (
         <div className="space-y-4 p-10">
-          {allactivities.map((activity, k) => (
+          {filteredActivities.map((activity, k) => (
             <div
               key={k}
               className="bg-white rounded-xl shadow-md p-4 flex items-center gap-4"
