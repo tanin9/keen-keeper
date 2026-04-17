@@ -9,9 +9,9 @@ const Dashboard = () => {
   const { storedFriendVideo } = useContext(FriendContext);
 
   const data = [
-    { name: "call", value: storedFriend.length, fill: "#0088FE" },
-    { name: "text", value: storedFriendText.length, fill: "#00C49F" },
-    { name: "video", value: storedFriendVideo.length, fill: "#FFBB28" },
+    { name: "Text", value: storedFriendText.length, fill: "#7f37f5" },
+    { name: "Call", value: storedFriend.length, fill: "#244d3f" },
+    { name: "Video", value: storedFriendVideo.length, fill: "#37a163" },
   ];
   const availableData =
     storedFriend.length > 0 ||
@@ -30,8 +30,8 @@ const Dashboard = () => {
 
         <div className="flex justify-center ">
           {!availableData ? (
-            <p className="text-gray-400 text-xl py-10">
-              No interactions logged yet.
+            <p className="forest-green text-4xl py-10">
+              No interactions logged yet.....
             </p>
           ) : (
             <PieChart
@@ -55,7 +55,7 @@ const Dashboard = () => {
                 dataKey="value"
                 isAnimationActive={true}
               />
-              <Legend />
+              <Legend  />
               <Tooltip />
             </PieChart>
           )}

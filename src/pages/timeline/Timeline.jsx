@@ -91,7 +91,7 @@ const Timeline = () => {
       </div>
 
       {allactivities.length === 0 ? (
-        <div className="container mx-auto flex justify-center items-center my-19 text-4xl">
+        <div className="container mx-auto flex justify-center items-center my-22 text-4xl">
           <p className="forest-green">No activities yet.....</p>
         </div>
       ) : filteredActivities.length === 0 ? (

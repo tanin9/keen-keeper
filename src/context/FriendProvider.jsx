@@ -1,9 +1,20 @@
 import React, { createContext, useState } from "react";
 import { toast } from "react-toastify";
+import { getAllFromLocalDB, addToLocalDB } from "../utils/localDB";
 
 export const FriendContext = createContext();
+
 const FriendProvider = ({ children }) => {
-  const [storedFriend, setStoredFriend] = useState([]);
+  // useEffect(() => {
+  //   const allFromLocalDB = getAllFromLocalDB();
+  //   console.log(allFromLocalDB, "All list from local DB");
+  // }, []);
+
+  //*...................call.................... */ //
+
+  const [storedFriend, setStoredFriend] = useState(() =>
+    getAllFromLocalDB().filter((fr) => fr.type === "call"),
+  );
 
   const handleCall = (currentFriend) => {
     const isFriendExist = storedFriend.find(
@@ -11,15 +22,25 @@ const FriendProvider = ({ children }) => {
     );
 
     if (!isFriendExist) {
-      setStoredFriend([
-        ...storedFriend,
-        { ...currentFriend, timestamp: new Date() },
-      ]);
-      toast.success(`Call with ${currentFriend.name}.`);
+      const value = {
+        ...currentFriend,
+        type: "call",
+        timestamp: new Date().toISOString(),
+      };
+      addToLocalDB(value);
+      setStoredFriend([...storedFriend, value]);
+      toast.success(`Call with ${currentFriend.name}.`, {
+        position: "top-center",
+      });
     }
-    console.log(currentFriend, storedFriend, "friend");
+    // console.log(currentFriend, storedFriend, "friend");
   };
-  const [storedFriendText, setStoredFriendText] = useState([]);
+
+  //*...................text.................... */ //
+
+  const [storedFriendText, setStoredFriendText] = useState(() =>
+    getAllFromLocalDB().filter((fr) => fr.type === "text"),
+  );
 
   const handleText = (currentFriend) => {
     const isFriendExistText = storedFriendText.find(
@@ -27,15 +48,25 @@ const FriendProvider = ({ children }) => {
     );
 
     if (!isFriendExistText) {
-      setStoredFriendText([
-        ...storedFriendText,
-        { ...currentFriend, timestamp: new Date() },
-      ]);
-      toast.success(`Text with ${currentFriend.name}`);
+      const value = {
+        ...currentFriend,
+        type: "text",
+        timestamp: new Date().toISOString(),
+      };
+      addToLocalDB(value);
+      setStoredFriendText([...storedFriendText, value]);
+      toast.success(`Text with ${currentFriend.name}`, {
+        position: "top-center",
+      });
     }
-    console.log(currentFriend, storedFriendText, "friend");
+    // console.log(currentFriend, storedFriendText, "friend");
   };
-  const [storedFriendVideo, setStoredFriendVideo] = useState([]);
+
+  //*...................vedio.................... */ //
+
+  const [storedFriendVideo, setStoredFriendVideo] = useState(() =>
+    getAllFromLocalDB().filter((fr) => fr.type === "video"),
+  );
 
   const handleVideo = (currentFriend) => {
     const isFriendExistVideo = storedFriendVideo.find(
@@ -43,13 +74,18 @@ const FriendProvider = ({ children }) => {
     );
 
     if (!isFriendExistVideo) {
-      setStoredFriendVideo([
-        ...storedFriendVideo,
-        { ...currentFriend, timestamp: new Date() },
-      ]);
-      toast.success(`Video with ${currentFriend.name}`);
+      const value = {
+        ...currentFriend,
+        type: "video",
+        timestamp: new Date().toISOString(),
+      };
+      addToLocalDB(value);
+      setStoredFriendVideo([...storedFriendVideo, value]);
+      toast.success(`Video with ${currentFriend.name}`, {
+        position: "top-center",
+      });
     }
-    console.log(currentFriend, storedFriendVideo, "friend");
+    // console.log(currentFriend, storedFriendVideo, "friend");
   };
 
   const data = {

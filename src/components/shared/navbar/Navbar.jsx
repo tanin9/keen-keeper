@@ -2,7 +2,8 @@ import React from "react";
 import { RiHome2Line } from "react-icons/ri";
 import { LuClock3 } from "react-icons/lu";
 import { VscGraphLine } from "react-icons/vsc";
-import { Link,NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
+import logo from "../../../assets/images/logo.png";
 
 const Navbar = () => {
   const links = (
@@ -44,8 +45,8 @@ const Navbar = () => {
     </>
   );
   return (
-    <div>
-      <div className="container mx-auto navbar bg-base-100 shadow-sm">
+    <div className="sticky top-0 z-50 bg-base-100 shadow-sm">
+      <div className="container mx-auto navbar bg-base-100 shadow-sm ">
         <div className="navbar-start">
           <div className="dropdown">
             <div
@@ -76,9 +77,16 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl  ">
+          {/* <a className="btn btn-ghost text-xl  ">
             Keen<span className="forest-green">Keeper</span>
-          </a>
+          </a> */}
+          <div>
+            <img
+              className="pl-10 h-10"
+              src={logo}
+              alt=""
+            />
+          </div>
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
