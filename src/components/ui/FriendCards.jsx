@@ -20,20 +20,20 @@ const FriendCards = ({ friend }) => {
         <div className="flex gap-2 ">
           {friend.tags.map((tag, i) => (
             <p
-              className="badge bg-success rounded-full text-lg p-3 "
+              className="badge bg-[#cbfadb] rounded-full text-sm font-medium p-4 "
               key={i}
             >
-              {tag}
+              {tag.toUpperCase()}
             </p>
           ))}
         </div>
         <p
-          className={`badge rounded-full text-white text-lg p-3 ${
-            friend.status === "overdue"
+          className={`badge rounded-full text-white text-lg p-4 ${
+            friend.status === "Overdue"
               ? "bg-red-500"
-              : friend.status === "almost due"
+              : friend.status === "Almost Due"
                 ? "bg-yellow-500"
-                : friend.status === "on track"
+                : friend.status === "On-Track"
                   ? "bg-forest-green"
                   : "bg-gray-400"
           }

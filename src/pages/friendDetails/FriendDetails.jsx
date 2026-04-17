@@ -59,12 +59,12 @@ const FriendDetails = () => {
               <div className="card-body items-center text-center">
                 <h2 className="card-title">{name}</h2>
                 <p
-                  className={`badge rounded-full text-white text-lg p-3 ${
-                    status === "overdue"
+                  className={`badge rounded-full text-white text-lg p-4 ${
+                    status === "Overdue"
                       ? "bg-red-500"
-                      : status === "almost due"
+                      : status === "Almost Due"
                         ? "bg-yellow-500"
-                        : status === "on track"
+                        : status === "On-Track"
                           ? "bg-forest-green"
                           : "bg-gray-400"
                   }
@@ -75,10 +75,10 @@ const FriendDetails = () => {
                 <div className="flex gap-2 ">
                   {tags.map((tag, i) => (
                     <p
-                      className="badge bg-success rounded-full text-lg p-3 "
+                      className="badge bg-[#cbfadb] rounded-full text-sm font-semibold p-4 "
                       key={i}
                     >
-                      {tag}
+                      {tag.toUpperCase()}
                     </p>
                   ))}
                 </div>

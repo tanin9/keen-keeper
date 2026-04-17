@@ -1,13 +1,14 @@
-Name of your project
-A short description
-Technologies you used
-3 key features of your project
 
+name of the Project            : Keen Keeper
 
-Project Name : Keen Keeper
+description                    : this project is a type of web application to manage friends
+                                 and track interaction history such as calls, texts, and video activities.
+                                 It's provides dashboard with persistent storage and real-time notifications.
 
-description:
+Technology used                : React, React-Router, React-Toastify, Context API
+                                 Tailwind CSS, daisyui, Recharts, react-icons, JSON
 
-Technologies: React.js,React Router DOM, Tailwind CSS, daisyui, Recharts, react-icons
-
-3 key features of your project:
+features of the project        : - show all friend
+                                 - Persistent storage, tost notification
+                                 - store Video,Text and Call tracking history  
+                                 - responsive layout
